@@ -15,19 +15,25 @@ public class RoomGenerator : MonoBehaviour
 
     void GenerateRoom()
     {
-        GameObject woodfloor = Instantiate(floorPrefab, transform.position,Quaternion.identity);
-        woodfloor.transform.localScale = new Vector3(10, 1, 10);
+        
+        GameObject floor = Instantiate(floorPrefab, transform.position, Quaternion.identity);
+        floor.transform.localScale = new Vector3(roomSize.x, 1, roomSize.z);
 
-        for (int i = 0; i < roomSize.x; i++)
-        {
-            Instantiate(wallPrefab, new Vector3(i, 0, 0), Quaternion.identity); 
-            Instantiate(wallPrefab, new Vector3(i, 0, roomSize.z), Quaternion.identity); 
-        }
+        float wallThickness = 0.4f;
+        float wallHeight = 3; 
+        
+      
+        GameObject frontWall = Instantiate(wallPrefab, new Vector3(0, wallHeight / 2, -roomSize.z / 2), Quaternion.identity);
+        frontWall.transform.localScale = new Vector3(roomSize.x, wallHeight, wallThickness); 
 
-        for (int i = 0; i < roomSize.z; i++)
-        {
-            Instantiate(wallPrefab, new Vector3(0, 0, i), Quaternion.identity); 
-            Instantiate(wallPrefab, new Vector3(roomSize.x, 0, i), Quaternion.identity); 
-        }
+        GameObject backWall = Instantiate(wallPrefab, new Vector3(0, wallHeight / 2, roomSize.z / 2), Quaternion.identity);
+        backWall.transform.localScale = new Vector3(roomSize.x, wallHeight, wallThickness); 
+        
+      
+        GameObject leftWall = Instantiate(wallPrefab, new Vector3(-roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
+        leftWall.transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness); 
+
+        GameObject rightWall = Instantiate(wallPrefab, new Vector3(roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
+        rightWall.transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness); 
     }
 }
