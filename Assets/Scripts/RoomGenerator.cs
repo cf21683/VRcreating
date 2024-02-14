@@ -25,24 +25,25 @@ public class RoomGenerator : MonoBehaviour
         floor.transform.localScale = new Vector3(roomSize.x, 1, roomSize.z);
 
         float wallThickness = 0.4f;
-        float wallHeight = 3; 
-        
+        float wallHeight = 3;
+
+        int index = Random.Range(0, wallMaterials.Length);
       
         GameObject frontWall = Instantiate(wallPrefab, new Vector3(0, wallHeight / 2, -roomSize.z / 2), Quaternion.identity);
-        CustomizeWall(frontWall);
+        CustomizeWall(frontWall,index);
         frontWall.transform.localScale = new Vector3(roomSize.x, wallHeight, wallThickness); 
 
         GameObject backWall = Instantiate(wallPrefab, new Vector3(0, wallHeight / 2, roomSize.z / 2), Quaternion.identity);
-        CustomizeWall(backWall);
+        CustomizeWall(backWall,index);
         backWall.transform.localScale = new Vector3(roomSize.x, wallHeight, wallThickness); 
         
       
         GameObject leftWall = Instantiate(wallPrefab, new Vector3(-roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
-        CustomizeWall(leftWall);
+        CustomizeWall(leftWall,index);
         leftWall.transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness);
 
         GameObject rightWall = Instantiate(wallPrefab, new Vector3(roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
-        CustomizeWall(rightWall);
+        CustomizeWall(rightWall,index);
         rightWall.transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness); 
     }
 
@@ -63,11 +64,10 @@ public class RoomGenerator : MonoBehaviour
         door.transform.localScale = new Vector3(0.2f,0.2f,0.18f);
     }
 
-    void CustomizeWall(GameObject wall)
+    void CustomizeWall(GameObject wall,int index)
     {
         if (wallMaterials.Length > 0)
         {
-            int index = Random.Range(0, wallMaterials.Length);
             Renderer wallRenderer = wall.GetComponent<Renderer>();
             if (wallRenderer != null)
             {
