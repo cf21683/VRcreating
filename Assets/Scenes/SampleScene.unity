@@ -441,6 +441,10 @@ MonoBehaviour:
   wallPrefab: {fileID: 264423117562406544, guid: 22b6e49688a6944d3b77240fc5836abb, type: 3}
   floorPrefab: {fileID: 4508274140394975293, guid: 0da02a6a1784247179c4defe4edd2fc3, type: 3}
   doorPrefab: {fileID: 919132149155446097, guid: af1ac946ce10846448454bd1c9e05eda, type: 3}
+  windowPrefab: {fileID: 919132149155446097, guid: 330783ed89cde4682a13241c08ea74c1, type: 3}
+  wall: {fileID: 0}
+  windowHeight: 2
+  windowWidth: 1
   wallMaterials:
   - {fileID: 2100000, guid: 82ccb28a79e6b40cb8702e8cb4853b1f, type: 2}
   - {fileID: 2100000, guid: 5a52da70e34b84e11815bd5cf1fc7447, type: 2}

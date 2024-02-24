@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class FurnitureGenerator : MonoBehaviour
 {
-    public GameObject sofaAndTableAndTvPrefab; 
+    public GameObject sofaAndTableAndTvPrefab;
+    
+    
 	
 	public Vector3 roomSize = new Vector3(10, 3, 10);
 	float wallThickness = 0.4f;
@@ -12,6 +14,7 @@ public class FurnitureGenerator : MonoBehaviour
     void Start()
     {
         GenerateFurniture();
+       
     }
 
     void GenerateFurniture()
@@ -20,6 +23,8 @@ public class FurnitureGenerator : MonoBehaviour
         Quaternion sofaAndTableAndTvRotation = Quaternion.Euler(0, -180, 0);
         GameObject sofaAndTableAndTv =
             Instantiate(sofaAndTableAndTvPrefab, sofaAndTableAndTvPosition, sofaAndTableAndTvRotation); 
-       sofaAndTableAndTv.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+       sofaAndTableAndTv.transform.localScale = new Vector3(0.7f,0.7f,0.7f);
     }
+
+    
 }

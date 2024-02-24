@@ -7,6 +7,11 @@ public class RoomGenerator : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject floorPrefab;
     public GameObject doorPrefab;
+	public GameObject windowPrefab;
+
+
+    public float windowHeight = 2.0f;
+    public float windowWidth = 1.0f;
 
     public Material[] wallMaterials;
     
@@ -36,12 +41,12 @@ public class RoomGenerator : MonoBehaviour
 
         
         GenerateFrontWallSegments(doorPositionX, doorWidth, wallHeight, wallThickness, index);
-        GenerateOtherWalls(wallHeight, wallThickness, index);
 
-      
-        
-        
+        GameObject windowWall = GenerateOtherWalls(wallHeight, wallThickness, index);
+    	GenerateWindow(windowWall);
+ 
     }
+
 
     void GenerateFrontWallSegments(float doorPositionX, float doorWidth, float wallHeight, float wallThickness, int index)
     {
@@ -63,22 +68,26 @@ public class RoomGenerator : MonoBehaviour
         
     }
 
-    void GenerateOtherWalls(float wallHeight, float wallThickness, int index)
+    
+    GameObject GenerateOtherWalls(float wallHeight, float wallThickness, int index)
     {
-        
-        GameObject backWall = Instantiate(wallPrefab, new Vector3(0, wallHeight / 2, roomSize.z / 2), Quaternion.identity);
-        CustomizeWall(backWall, index);
-        backWall.transform.localScale = new Vector3(roomSize.x, wallHeight, wallThickness); 
-        
-       
-        GameObject leftWall = Instantiate(wallPrefab, new Vector3(-roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
-        CustomizeWall(leftWall, index);
-        leftWall.transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness);
+        GameObject[] walls = new GameObject[3];
 
-        
-        GameObject rightWall = Instantiate(wallPrefab, new Vector3(roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
-        CustomizeWall(rightWall, index);
-        rightWall.transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness); 
+        walls[0] = Instantiate(wallPrefab, new Vector3(0, wallHeight / 2, roomSize.z / 2), Quaternion.identity);
+        CustomizeWall(walls[0], index);
+        walls[0].transform.localScale = new Vector3(roomSize.x, wallHeight, wallThickness);
+
+        walls[1] = Instantiate(wallPrefab, new Vector3(-roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
+        CustomizeWall(walls[1], index);
+        walls[1].transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness);
+
+        walls[2] = Instantiate(wallPrefab, new Vector3(roomSize.x / 2, wallHeight / 2, 0), Quaternion.Euler(0, 90, 0));
+        CustomizeWall(walls[2], index);
+        walls[2].transform.localScale = new Vector3(roomSize.z, wallHeight, wallThickness);
+
+       
+        int randomIndex = Random.Range(0, walls.Length);
+        return walls[randomIndex];
     }
 
     float GenerateDoor(Vector3 position)
@@ -102,4 +111,46 @@ public class RoomGenerator : MonoBehaviour
             }
         }
     }
+
+	void GenerateWindow(GameObject wall){
+				
+
+		Vector3 windowPosition = wall.transform.position;
+		Quaternion windowRotation;
+
+		if (Mathf.Approximately(wall.transform.position.z, 0))
+    {	
+			float randomZ = Random.Range(-roomSize.z / 2 + 1f, roomSize.z / 2 - 1f);
+        
+        if (wall.transform.position.x > 0)
+        {
+           	windowPosition += new Vector3(-0.2f,0,randomZ);
+            windowRotation = Quaternion.Euler(-90, -90, 0); 
+        }
+        else
+        {
+            windowPosition += new Vector3(+0.2f,0,randomZ);
+            windowRotation = Quaternion.Euler(-90, 90, 0); 
+        }
+    }
+    else
+    {
+        
+        if (wall.transform.position.z > 0)
+        {	
+			float randomX = Random.Range(0.0f, roomSize.x / 2 - 1f);
+           	windowPosition += new Vector3(randomX,0,-0.2f);
+            windowRotation = Quaternion.Euler(-90, 180, 0); 
+        }
+        else
+        {
+           
+            windowRotation = Quaternion.identity; 
+        }
+    }
+
+        
+ 
+        GameObject windowInstance = Instantiate(windowPrefab, windowPosition, windowRotation);
+	}
 }
