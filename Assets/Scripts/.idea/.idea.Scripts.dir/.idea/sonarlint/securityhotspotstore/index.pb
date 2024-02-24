@@ -7,7 +7,5 @@ J
 FurnitureGenerator.cs.meta,0/7/0734e3da38b7d7cd89fb46630d43736084045d26
 E
 RoomGenerator.cs.meta,2/a/2a05b671c36a1a72c26a37569b8f10f75af2a28b
-=
-controller.cs,0/2/024e625afef5848e31763f3ff0becd4039a7aefe
 A
 PlayerMovement.cs,6/b/6b337a4c0846444a7742294dc5f2e2c110407cbd

@@ -2,19 +2,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 2.0f;
-    public float rotationSpeed = 100.0f;
-    
+    public float movespeed = 2.0f;
+    public float rotationSpeed = 50.0f;
+
+    public Transform vrCamera;
     void Update()
     {
         
-        Vector2 input = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+        Vector2 inputLeft = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+        Vector2 inputRight = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
         
-        Vector3 moveDirection = new Vector3(input.x, 0, input.y);
-        moveDirection = transform.TransformDirection(moveDirection);
-        transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+        Vector3 moveDirection = vrCamera.forward * inputLeft.y + vrCamera.right * inputLeft.x;
+        moveDirection.y = 0; 
+        moveDirection.Normalize(); 
 
-        float rotation = input.x * rotationSpeed * Time.deltaTime;
-        transform.Rotate(0, rotation, 0, Space.World);
+        
+        transform.Translate(moveDirection * movespeed * Time.deltaTime, Space.World);
+        
+        float rotationAmount = inputRight.x * rotationSpeed * Time.deltaTime;
+        transform.Rotate(0, rotationAmount, 0);
     }
 }    
