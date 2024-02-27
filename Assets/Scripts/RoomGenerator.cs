@@ -97,6 +97,9 @@ public class RoomGenerator : MonoBehaviour
         door.transform.localScale = new Vector3(0.25f, 0.25f, 0.1f);
 
         float doorWidth = door.transform.localScale.x * 3f;
+		BoxCollider doorCollider = door.AddComponent<BoxCollider>();
+		Rigidbody rb = door.AddComponent<Rigidbody>();
+
         return doorWidth;
     }
 
@@ -104,6 +107,8 @@ public class RoomGenerator : MonoBehaviour
     {
         if (wallMaterials.Length > 0)
         {
+			BoxCollider collider = wall.AddComponent<BoxCollider>();
+			Rigidbody rb = wall.AddComponent<Rigidbody>();
             Renderer wallRenderer = wall.GetComponent<Renderer>();
             if (wallRenderer != null)
             {
