@@ -99,7 +99,7 @@ public class RoomGenerator : MonoBehaviour
         float doorWidth = door.transform.localScale.x * 3f;
 		BoxCollider doorCollider = door.AddComponent<BoxCollider>();
 		Rigidbody rb = door.AddComponent<Rigidbody>();
-
+		rb.isKinematic = true;
         return doorWidth;
     }
 
@@ -109,6 +109,7 @@ public class RoomGenerator : MonoBehaviour
         {
 			BoxCollider collider = wall.AddComponent<BoxCollider>();
 			Rigidbody rb = wall.AddComponent<Rigidbody>();
+			rb.isKinematic = true;
             Renderer wallRenderer = wall.GetComponent<Renderer>();
             if (wallRenderer != null)
             {
