@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     void FixedUpdate()
@@ -24,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
         moveDirection.Normalize();
 
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.deltaTime);
-
         
         
         float yRotation = inputRight.x * rotationSpeed * Time.deltaTime;

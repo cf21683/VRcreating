@@ -11,3 +11,7 @@ A
 PlayerMovement.cs,6/b/6b337a4c0846444a7742294dc5f2e2c110407cbd
 F
 PlayerMovement.cs.meta,5/a/5ab80fd371d8e1ce6dcaa3f219eba38377cf7f55
+B
+doorInteraction.cs,6/6/6600dcb7ed08b9ce22ea60230949391e39a53cf2
+G
+doorInteraction.cs.meta,0/4/0448aea4289362e30e59588f7d998cef70ef9ce1

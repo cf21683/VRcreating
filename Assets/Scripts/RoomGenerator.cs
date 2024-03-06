@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -8,7 +10,6 @@ public class RoomGenerator : MonoBehaviour
     public GameObject floorPrefab;
     public GameObject doorPrefab;
 	public GameObject windowPrefab;
-
 
     public float windowHeight = 2.0f;
     public float windowWidth = 1.0f;
@@ -94,11 +95,17 @@ public class RoomGenerator : MonoBehaviour
     {
         Quaternion doorRotation = Quaternion.identity; 
         GameObject door = Instantiate(doorPrefab, position, doorRotation);
-        door.transform.localScale = new Vector3(0.25f, 0.25f, 0.1f);
+		door.transform.localScale = new Vector3(0.25f, 0.25f, 0.1f);
 
+	
+		doorInteraction doorInteract = door.AddComponent<doorInteraction>();
+		Image doorLoadingUI = GameObject.Find("Canvas/doorLoadingUI").GetComponent<Image>();
+		doorInteract.doorLoading = doorLoadingUI;
+   
         float doorWidth = door.transform.localScale.x * 3f;
 		BoxCollider doorCollider = door.AddComponent<BoxCollider>();
 		Rigidbody rb = door.AddComponent<Rigidbody>();
+		
 		rb.isKinematic = true;
         return doorWidth;
     }
