@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
 
     void FixedUpdate()
@@ -20,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 inputRight = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
 
         
-        Vector3 moveDirection = vrCamera.forward * inputLeft.y + vrCamera.right * inputLeft.x;
+        Vector3 moveDirection = vrCamera.forward * inputLeft.x + vrCamera.right * inputLeft.y;
         moveDirection.y = 0; 
         moveDirection.Normalize();
 

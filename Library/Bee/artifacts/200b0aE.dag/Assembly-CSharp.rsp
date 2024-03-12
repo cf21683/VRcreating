@@ -551,7 +551,9 @@
 "Assets/Oculus/SampleFramework/Usage/TouchPro/Scripts/Ui/UiDeviceInspector.cs"
 "Assets/Oculus/SampleFramework/Usage/TouchPro/Scripts/Ui/UiSceneMenu.cs"
 "Assets/Oculus/SampleFramework/Usage/TouchPro/Scripts/Ui/UiVectorInspector.cs"
+"Assets/Scripts/doorInteraction.cs"
 "Assets/Scripts/FurnitureGenerator.cs"
+"Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/RoomGenerator.cs"
 -langversion:9.0
 

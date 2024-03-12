@@ -10,6 +10,8 @@ public class RoomGenerator : MonoBehaviour
     public GameObject floorPrefab;
     public GameObject doorPrefab;
 	public GameObject windowPrefab;
+	public Transform player;
+
 
     public float windowHeight = 2.0f;
     public float windowWidth = 1.0f;
@@ -34,7 +36,7 @@ public class RoomGenerator : MonoBehaviour
         
         
         float doorPositionX = Random.Range(-roomSize.x / 2 + 1.5f, roomSize.x / 2 - 1.5f);
-        Vector3 doorPosition = new Vector3(doorPositionX, wallHeight / 2 + 0.25f, -roomSize.z / 2 + wallThickness / 2);
+        Vector3 doorPosition = new Vector3(doorPositionX, 1.26f, -roomSize.z / 2 + wallThickness / 2);
         float doorWidth = GenerateDoor(doorPosition);
         
         
@@ -56,14 +58,14 @@ public class RoomGenerator : MonoBehaviour
 
        
       
-            GameObject frontLeftWall = Instantiate(wallPrefab, new Vector3(-roomSize.x / 2 + frontLeftWallWidth / 2, wallHeight / 2, -roomSize.z / 2), Quaternion.identity);
+            GameObject frontLeftWall = Instantiate(wallPrefab, new Vector3(-roomSize.x / 2 -0.2f+ frontLeftWallWidth / 2, wallHeight / 2, -roomSize.z / 2), Quaternion.identity);
             CustomizeWall(frontLeftWall, index);
             frontLeftWall.transform.localScale = new Vector3(frontLeftWallWidth, wallHeight, wallThickness);
         
 
         
         
-            GameObject frontRightWall = Instantiate(wallPrefab, new Vector3(doorPositionX + doorWidth / 2 + frontRightWallWidth / 2, wallHeight / 2, -roomSize.z / 2), Quaternion.identity);
+            GameObject frontRightWall = Instantiate(wallPrefab, new Vector3(doorPositionX + doorWidth / 2 +0.1f + frontRightWallWidth / 2, wallHeight / 2, -roomSize.z / 2), Quaternion.identity);
             CustomizeWall(frontRightWall, index);
             frontRightWall.transform.localScale = new Vector3(frontRightWallWidth, wallHeight, wallThickness);
         
@@ -95,13 +97,8 @@ public class RoomGenerator : MonoBehaviour
     {
         Quaternion doorRotation = Quaternion.identity; 
         GameObject door = Instantiate(doorPrefab, position, doorRotation);
-		door.transform.localScale = new Vector3(0.25f, 0.25f, 0.1f);
+		door.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
 
-	
-		doorInteraction doorInteract = door.AddComponent<doorInteraction>();
-		Image doorLoadingUI = GameObject.Find("Canvas/doorLoadingUI").GetComponent<Image>();
-		doorInteract.doorLoading = doorLoadingUI;
-   
         float doorWidth = door.transform.localScale.x * 3f;
 		BoxCollider doorCollider = door.AddComponent<BoxCollider>();
 		Rigidbody rb = door.AddComponent<Rigidbody>();

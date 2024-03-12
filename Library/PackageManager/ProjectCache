@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638432899810000000
+      ticks: 638454987170000000
     m_Hash: 3522487562
   m_LockFileStatus:
     m_FilePath: /Users/starling/ZhiKangShi/VRcreating/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638432899810000000
+      ticks: 638454987180000000
     m_Hash: 2933235984
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -114,8 +114,10 @@ m_ResolvedPackages:
     - 2.1.0-preview.6
     - 2.1.0
     - 2.2.0
+    - 2.3.1
     compatible:
     - 2.2.0
+    - 2.3.1
     recommended: 2.2.0
     deprecated: []
   dependencies: []
@@ -374,6 +376,7 @@ m_ResolvedPackages:
     - 3.0.5
     - 3.0.6
     - 3.0.7
+    - 3.0.8
     - 3.2.0-pre.1
     - 3.2.0-pre.2
     - 3.2.0-pre.3
@@ -382,11 +385,13 @@ m_ResolvedPackages:
     - 3.2.0-pre.6
     - 3.2.0-pre.7
     - 3.2.0-pre.8
+    - 3.2.0-pre.9
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     compatible:
     - 3.0.6
     - 3.0.7
+    - 3.0.8
     - 3.2.0-pre.1
     - 3.2.0-pre.2
     - 3.2.0-pre.3
@@ -395,9 +400,10 @@ m_ResolvedPackages:
     - 3.2.0-pre.6
     - 3.2.0-pre.7
     - 3.2.0-pre.8
+    - 3.2.0-pre.9
     - 4.0.0-pre.1
     - 4.0.0-pre.2
-    recommended: 3.0.7
+    recommended: 3.0.8
     deprecated: []
   dependencies:
   - name: com.unity.ugui
@@ -729,9 +735,11 @@ m_ResolvedPackages:
     - 1.8.0
     - 1.9.0
     - 1.9.1
+    - 1.9.2
     compatible:
     - 1.9.1
-    recommended: 1.9.1
+    - 1.9.2
+    recommended: 1.9.2
     deprecated:
     - 1.8.0-pre.1
   dependencies:
@@ -868,6 +876,7 @@ m_ResolvedPackages:
     - 3.2.3-pre.1
     - 3.2.3
     - 3.3.0
+    - 3.4.0
     - 4.0.0
     - 4.1.1
     - 4.1.2
@@ -3122,9 +3131,11 @@ m_ResolvedPackages:
     - 3.0.25
     - 3.0.26
     - 3.0.27
+    - 3.0.28
     compatible:
     - 3.0.27
-    recommended: 3.0.27
+    - 3.0.28
+    recommended: 3.0.28
     deprecated: []
   dependencies:
   - name: com.unity.ext.nunit
