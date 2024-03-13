@@ -15,5 +15,17 @@ public class TransformableEditor : Editor
         {
             script.ActivateTransformable();
         }
+        
+        if (GUILayout.Button("Remove Transformable Script"))
+        {
+            
+            if (EditorUtility.DisplayDialog("Remove Transformable script",
+                    "Are you sure you want to remove the Transformable script?",
+                    "Yes", "No"))
+            {
+                Undo.RecordObject(script, "Remove Transformable script");
+                script.DeleteTransformable(); 
+            }
+        }
     }
 }
