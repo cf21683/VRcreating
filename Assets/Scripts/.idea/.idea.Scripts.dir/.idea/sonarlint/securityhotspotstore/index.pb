@@ -15,3 +15,9 @@ B
 doorInteraction.cs,6/6/6600dcb7ed08b9ce22ea60230949391e39a53cf2
 G
 doorInteraction.cs.meta,0/4/0448aea4289362e30e59588f7d998cef70ef9ce1
+@
+Transformable.cs,6/8/6841ce2d05a8e9c329ef9c6accd13bc48706f2de
+E
+NewBehaviourScript.cs,2/e/2e2929b85699f8bdf54170e084a9fc5ed8ad918c
+J
+NewBehaviourScript.cs.meta,6/c/6cdaa7b1b33a9ebd9ab6bd3e1c022c37f3c7c8d1
