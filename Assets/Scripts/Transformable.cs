@@ -8,6 +8,16 @@ public class Transformable : MonoBehaviour
     
     void Start()
     {   
+    }
+
+    
+    void Update()
+    {
+        
+    }
+    
+    public void ActivateTransformable()
+    {
         GameObject[] transformableObjects = GameObject.FindGameObjectsWithTag("Transformable");
         foreach (GameObject obj in transformableObjects)
         {
@@ -69,12 +79,5 @@ public class Transformable : MonoBehaviour
                 }
             }
         }
-    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
