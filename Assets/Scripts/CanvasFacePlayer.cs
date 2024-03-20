@@ -9,8 +9,8 @@ public class CanvasFacePlayer : MonoBehaviour
     
     public Transform player;
     
-    public float distanceFromPlayer = 0.2f;
-    public float heightOffset = 1.5f; 
+    public float distanceFromPlayer = 0.3f;
+    public float heightOffset = 1.3f; 
 
     void Start()
     {

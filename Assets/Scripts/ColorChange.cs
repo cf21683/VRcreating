@@ -24,7 +24,7 @@ public class ColorChange : MonoBehaviour
     }
 
     void CloseCanvas(){
-        canvas.SetActive(false);
+        Destroy(canvas);
     }
 
     public void SetRenderer(Renderer renderer){
