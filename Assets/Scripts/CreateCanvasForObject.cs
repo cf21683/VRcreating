@@ -9,11 +9,21 @@ public class CreateCanvasForObject : MonoBehaviour
     {
     GameObject canvasPrefab = Resources.Load<GameObject>("ColorCanvas");
     if (canvasPrefab != null) {
-        Debug.Log("Creating Canvas Prefab");
-        Instantiate(canvasPrefab);
-    } else {
-        Debug.LogError("Failed to load Canvas Prefab from Resources!");
-    }
+        GameObject canvasInstance = Instantiate(canvasPrefab);
+        Renderer currentRenderer = GetComponent<Renderer>();
+
+        if(currentRenderer != null)
+            {
+                
+                ColorChange colorChangeScript = canvasInstance.GetComponent<ColorChange>();
+                if(colorChangeScript != null)
+                {
+        
+                    colorChangeScript.SetRenderer(currentRenderer);
+                }
+                
+            }
+    } 
 }
     void Start(){
         CreateCanvas();
