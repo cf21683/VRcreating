@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class CreateCanvasForObject : MonoBehaviour
 {
 
@@ -11,7 +12,7 @@ public class CreateCanvasForObject : MonoBehaviour
     if (canvasPrefab != null) {
         GameObject canvasInstance = Instantiate(canvasPrefab, transform);
         Renderer currentRenderer = GetComponent<Renderer>();
-
+        canvasPrefab.transform.localScale = new Vector3(1f, 1f, 1f);
         if(currentRenderer != null)
             {
                 
@@ -28,6 +29,10 @@ public class CreateCanvasForObject : MonoBehaviour
    
 
     void Start(){
+    }
+
+    void Awake()
+    {
         CreateCanvas();
     }
 }

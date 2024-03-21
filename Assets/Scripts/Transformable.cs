@@ -2,6 +2,7 @@ using System.Collections;
 using Oculus.Interaction;
 using UnityEngine;
 using Oculus.Interaction.HandGrab;
+using Oculus.Interaction.Surfaces;
 
 public class Transformable : MonoBehaviour
 {
@@ -84,6 +85,33 @@ public class Transformable : MonoBehaviour
                     handGrabInteractable = child.gameObject.AddComponent<HandGrabInteractable>();
                     handGrabInteractable.InjectRigidbody(rigidbody);
                 }
+                
+                ColliderSurface colliderSurface = child.GetComponent<ColliderSurface>();
+                if(colliderSurface == null){
+                    colliderSurface = child.gameObject.AddComponent<ColliderSurface>();
+                    colliderSurface.InjectCollider(collider);
+                }
+
+                RayInteractable rayInteractable = child.GetComponent<RayInteractable>();
+                if(rayInteractable == null){
+                    rayInteractable = child.gameObject.AddComponent<RayInteractable>();
+                    rayInteractable.InjectSurface(colliderSurface);
+                }
+
+                InteractableUnityEventWrapper interactableUnityEventWrapper = child.GetComponent<InteractableUnityEventWrapper>();
+                if(interactableUnityEventWrapper == null){
+                    interactableUnityEventWrapper = child.gameObject.AddComponent<InteractableUnityEventWrapper>();
+                    interactableUnityEventWrapper.InjectInteractableView(rayInteractable);
+                }
+
+                CreateCanvasForObject createCanvasForObject = child.GetComponent<CreateCanvasForObject>();
+                if(createCanvasForObject == null){
+                    createCanvasForObject = child.gameObject.AddComponent<CreateCanvasForObject>();
+                }
+                
+                if(createCanvasForObject != null){
+                    DestroyImmediate(createCanvasForObject);
+                }
             }
         }
     }
@@ -137,6 +165,34 @@ public class Transformable : MonoBehaviour
                 {
                     DestroyImmediate(handGrabInteractable);
                 }
+
+                ColliderSurface colliderSurface = child.GetComponent<ColliderSurface>();
+                if (colliderSurface != null)
+                {
+                    DestroyImmediate(colliderSurface);
+                }
+
+                RayInteractable rayInteractable = child.GetComponent<RayInteractable>();
+                if(rayInteractable != null){
+                    DestroyImmediate(rayInteractable);
+                }
+
+                InteractableUnityEventWrapper interactableUnityEventWrapper = child.GetComponent<InteractableUnityEventWrapper>();
+                if(interactableUnityEventWrapper != null){
+                    DestroyImmediate(interactableUnityEventWrapper);
+                }
+                
+                CreateCanvasForObject createCanvasForObject = child.GetComponent<CreateCanvasForObject>();
+                if(createCanvasForObject != null){
+                    DestroyImmediate(createCanvasForObject);
+                }
+
+                Transform colorCanvasTransform = child.Find("ColorCanvas(Clone)");
+                 if (colorCanvasTransform != null)
+                {
+                    DestroyImmediate(colorCanvasTransform.gameObject);
+                }
+
             }
         }
     }

@@ -14,6 +14,13 @@ public class CanvasFacePlayer : MonoBehaviour
 
     void Start()
     {
+    
+    }
+
+    
+    void Update()
+    {
+
         if (!player) 
         {
             GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
@@ -22,11 +29,6 @@ public class CanvasFacePlayer : MonoBehaviour
                 player = playerGameObject.transform;
             }
         }
-    }
-
-    
-    void Update()
-    {
 
         if (canvas.activeSelf && player != null)
         {
@@ -45,7 +47,7 @@ public class CanvasFacePlayer : MonoBehaviour
             canvas.transform.rotation = lookRotation;
 
             Vector3 rotation = canvas.transform.eulerAngles;
-            rotation.x = 0; // 或者设置为期望的固定俯仰角
+            rotation.x = 0; 
             canvas.transform.eulerAngles = rotation;
             canvas.transform.Rotate(0, 180f, 0);
         }
