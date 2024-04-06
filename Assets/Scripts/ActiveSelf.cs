@@ -6,6 +6,7 @@ public class ActiveSelf : MonoBehaviour
 {
     public void ActivateGameObject()
     {
+        // activate the gameobejct
         gameObject.SetActive(true);
     }
 }

@@ -11,7 +11,7 @@ public class ColorChange : MonoBehaviour
     public Renderer target;
     void Start()
     {
-        sliderR.onValueChanged.AddListener(delegate{OnColorChange();});
+        sliderR.onValueChanged.AddListener(delegate{OnColorChange();}); // when the value of the slider changes, call the OnColorChange function
         sliderG.onValueChanged.AddListener(delegate{OnColorChange();});
         sliderB.onValueChanged.AddListener(delegate{OnColorChange();});
         closeButton.onClick.AddListener(CloseCanvas);

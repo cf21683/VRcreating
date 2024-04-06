@@ -21,16 +21,16 @@ public class CanvasFacePlayer : MonoBehaviour
     void Update()
     {
 
-        if (!player) 
+        if (!player) // if not found player then find the player in the obejct list
+    {
+        GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerGameObject)
         {
-            GameObject playerGameObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerGameObject)
-            {
-                player = playerGameObject.transform;
-            }
+            player = playerGameObject.transform;
         }
+    }
 
-        if (canvas.activeSelf && player != null)
+        if (canvas.activeSelf && player != null) // if the canvas is active and the player is not null then place the canvas to the player
         {
             
             Vector3 canvasPosition = player.position + player.forward * distanceFromPlayer;

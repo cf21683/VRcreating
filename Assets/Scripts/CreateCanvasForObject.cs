@@ -8,6 +8,7 @@ public class CreateCanvasForObject : MonoBehaviour
 
    public void CreateCanvas()
     {
+// load the canvas prefab and set the object to the canvas
     GameObject canvasPrefab = Resources.Load<GameObject>("ColorCanvas");
     if (canvasPrefab != null) {
         GameObject canvasInstance = Instantiate(canvasPrefab, transform);

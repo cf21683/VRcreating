@@ -17,7 +17,7 @@ public class Transformable : MonoBehaviour
         
     }
     
-    public void ActivateTransformable()
+    public void ActivateTransformable()  // create the following attributes to the object
     {
         GameObject[] transformableObjects = GameObject.FindGameObjectsWithTag("Transformable");
         foreach (GameObject obj in transformableObjects)
@@ -86,29 +86,33 @@ public class Transformable : MonoBehaviour
                     handGrabInteractable.InjectRigidbody(rigidbody);
                 }
                 
+                //add the collider surface script to the object
                 ColliderSurface colliderSurface = child.GetComponent<ColliderSurface>();
                 if(colliderSurface == null){
                     colliderSurface = child.gameObject.AddComponent<ColliderSurface>();
                     colliderSurface.InjectCollider(collider);
                 }
 
+                //add the ray interactable script to the object
                 RayInteractable rayInteractable = child.GetComponent<RayInteractable>();
                 if(rayInteractable == null){
                     rayInteractable = child.gameObject.AddComponent<RayInteractable>();
                     rayInteractable.InjectSurface(colliderSurface);
                 }
 
+                //add the interactable unity event wrapper script to the object
                 InteractableUnityEventWrapper interactableUnityEventWrapper = child.GetComponent<InteractableUnityEventWrapper>();
                 if(interactableUnityEventWrapper == null){
                     interactableUnityEventWrapper = child.gameObject.AddComponent<InteractableUnityEventWrapper>();
                     interactableUnityEventWrapper.InjectInteractableView(rayInteractable);
                 }
 
+                //add the create canvas for object script to the object
                 CreateCanvasForObject createCanvasForObject = child.GetComponent<CreateCanvasForObject>();
                 if(createCanvasForObject == null){
                     createCanvasForObject = child.gameObject.AddComponent<CreateCanvasForObject>();
                 }
-                
+                // Avoid the createcanvasforobject script from repeatedly generating canvas
                 if(createCanvasForObject != null){
                     DestroyImmediate(createCanvasForObject);
                 }
