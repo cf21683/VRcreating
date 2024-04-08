@@ -12,7 +12,7 @@ public class SavePlayModeChanges
 
    private static void SaveChanges(){
     Debug.Log("Starting to save play mode changes.");
-    // find the each object and save the position
+    // find the each object 
     foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Object")){
         // save the position
         string positionKey = obj.name + "_position";
@@ -32,7 +32,16 @@ public class SavePlayModeChanges
         Vector3 scale = obj.transform.localScale;
         string scaleValue = scale.x.ToString("F3") + "," + scale.y.ToString("F3") + "," + scale.z.ToString("F3");
         EditorPrefs.SetString(scaleKey, scaleValue);
-    }
+
+        // save the color
+        Renderer renderer = obj.GetComponent<Renderer>();
+        if(renderer != null){
+            Color color = renderer.material.color;
+            string colorKey = obj.name + "_color";
+            string colorValue = color.r + "," + color.g + "," + color.b + "," + color.a;
+            EditorPrefs.SetString(colorKey, colorValue);
+        }
+    }  
     
    }
 
@@ -43,15 +52,18 @@ public class SavePlayModeChanges
                 SaveChanges(); // Save changes before exiting Play Mode
                 break;
             case PlayModeStateChange.EnteredEditMode:
-                ApplySavedPositions(); // Apply saved positions after exiting Play Mode
+                ApplySaved(); // Apply saved positions after exiting Play Mode
                 break;
         }
     }
 
-   private static void ApplySavedPositions(){
-    Debug.Log("Starting to apply saved positions.");
+   private static void ApplySaved(){
+    Debug.Log("Starting to apply saved changes.");
     foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Object")){
         string positionKey = obj.name + "_position";
+        string rotationKey = obj.name + "_rotation";
+        string scaleKey = obj.name + "_scale";
+        string colorKey = obj.name + "_color";
 
         // check if the position key exists and apply position
         if(EditorPrefs.HasKey(positionKey)){
@@ -63,7 +75,7 @@ public class SavePlayModeChanges
         }
 
         // check if the rotation key exists and apply rotation
-        string rotationKey = obj.name + "_rotation";
+     
         if(EditorPrefs.HasKey(rotationKey)){
             string rotationValue = EditorPrefs.GetString(rotationKey);
             string[] rotationValues = rotationValue.Split(',');
@@ -72,7 +84,8 @@ public class SavePlayModeChanges
             Debug.Log($"Applying saved rotation for object: {obj.name} to {rotation}");
         }
 
-        string scaleKey = obj.name + "_scale";
+
+        // check if the scale key exists and apply scale
         if(EditorPrefs.HasKey(scaleKey)){
             string scaleValue = EditorPrefs.GetString(scaleKey);
             string[] scaleValues = scaleValue.Split(',');
@@ -80,9 +93,30 @@ public class SavePlayModeChanges
             obj.transform.localScale = scale;
             Debug.Log($"Applying saved scale for object: {obj.name} to {scale}");
         }
+
+        // check if the color key exists and apply color        
+        if (EditorPrefs.HasKey(colorKey))
+        {
+            string colorValue = EditorPrefs.GetString(colorKey);
+            string[] colorValues = colorValue.Split(',');
+            Color color = new Color(
+                float.Parse(colorValues[0]),
+                float.Parse(colorValues[1]),
+                float.Parse(colorValues[2]),
+                float.Parse(colorValues[3]));
+                
+            Renderer renderer = obj.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                renderer.sharedMaterial.color = color;
+                Debug.Log($"Applying saved color for object: {obj.name} to {color}");
+            }
+        }
+
         EditorPrefs.DeleteKey(positionKey);
         EditorPrefs.DeleteKey(rotationKey);
         EditorPrefs.DeleteKey(scaleKey);
+        EditorPrefs.DeleteKey(colorKey);
     }
     Debug.Log("PlayMode Changes Applied");
    }
