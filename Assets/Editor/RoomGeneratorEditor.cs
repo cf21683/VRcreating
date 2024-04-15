@@ -15,7 +15,15 @@ public class RoomGeneratorEditor : Editor
         }
 
         if(GUILayout.Button("Clear Room")){
-            roomGenerator.DestroyGeneratedObjects();
+
+             if (EditorUtility.DisplayDialog("Remove room object",
+                    "Are you sure you want to remove the room object?",
+                    "Yes", "No"))
+            {
+                Undo.RecordObject(roomGenerator, "Remove room object");
+                roomGenerator.DestroyGeneratedObjects();
+            }
+        
         }
     }
 }
