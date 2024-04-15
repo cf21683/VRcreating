@@ -30,6 +30,21 @@ public class RoomGenerator : MonoBehaviour
         GameObject floor = Instantiate(floorPrefab, transform.position, Quaternion.identity);
         floor.transform.localScale = new Vector3(roomSize.x, 1, roomSize.z);
 
+
+        float desiredFloorThickness = 1.2f;
+
+        //get the collider
+        BoxCollider floorCollider = floor.GetComponent<BoxCollider>();
+        if (floorCollider == null)
+        {
+            floorCollider = floor.AddComponent<BoxCollider>();
+        }
+
+        // set the height of collider
+        Vector3 colliderSize = floorCollider.size;
+        colliderSize.y = desiredFloorThickness; 
+        floorCollider.size = colliderSize;
+
         float wallThickness = 0.4f;
         float wallHeight = 3;
         

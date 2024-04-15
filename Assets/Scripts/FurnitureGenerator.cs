@@ -9,8 +9,6 @@ public class FurnitureGenerator : MonoBehaviour
     
 	
 	public Vector3 roomSize = new Vector3(10, 3, 10);
-	float wallThickness = 0.4f;
-    float wallHeight = 3; 
     void Start()
     {
         GenerateFurniture();

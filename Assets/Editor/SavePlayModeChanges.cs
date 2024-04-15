@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEngine;
@@ -121,3 +122,4 @@ public class SavePlayModeChanges
     Debug.Log("PlayMode Changes Applied");
    }
 }
+#endif
