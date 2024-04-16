@@ -9,11 +9,12 @@ public class RoomGeneratorEditor : Editor
 
         RoomGenerator roomGenerator = (RoomGenerator)target;
 
-        // a button use to generate the room
+        // a button use to generate the room object
         if(GUILayout.Button("Generate Room")){
             roomGenerator.GenerateRoom();
         }
 
+        // a button use to delete the room object
         if(GUILayout.Button("Clear Room")){
 
              if (EditorUtility.DisplayDialog("Remove room object",
