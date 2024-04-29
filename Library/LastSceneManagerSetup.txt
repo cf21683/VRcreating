@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/sampleScene.unity
+- path: Assets/AutoSave/2024-04-27_15-13-35.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

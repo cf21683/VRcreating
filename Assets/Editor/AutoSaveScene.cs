@@ -13,8 +13,8 @@ public class AutoSaveScene
     private const string menuPath = "Tools/AutoSave";
     static AutoSaveScene(){
         autoSaveEnabled = EditorPrefs.GetBool("AutoSaveEnabled", true);
-        EditorApplication.playModeStateChanged += delaySave;
         CreateFolder();
+        EditorApplication.playModeStateChanged += delaySave;
         Menu.SetChecked(menuPath, autoSaveEnabled);
     }
 

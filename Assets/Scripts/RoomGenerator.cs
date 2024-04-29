@@ -28,6 +28,7 @@ public class RoomGenerator : MonoBehaviour
 
     public void GenerateRoom()
     {
+        DestroyGeneratedObjects();
         GameObject floor = Instantiate(floorPrefab, transform.position, Quaternion.identity);
         floor.transform.localScale = new Vector3(roomSize.x, 1, roomSize.z);
 
