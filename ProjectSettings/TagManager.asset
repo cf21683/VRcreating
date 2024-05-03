@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Transformable
   - Object
+  - Object2
   layers:
   - Default
   - TransparentFX

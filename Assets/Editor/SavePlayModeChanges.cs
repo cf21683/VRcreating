@@ -11,10 +11,15 @@ public class SavePlayModeChanges
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
 
+    public static void SaveCurrentState() {
+    SaveChanges();
+    }
+
    private static void SaveChanges(){
     Debug.Log("Starting to save play mode changes.");
     // find the each object 
     foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Object")){
+        Undo.RecordObject(obj.transform, "Save Play Mode Changes");
         // save the position
         string positionKey = obj.name + "_position";
         Vector3 position = obj.transform.position;
@@ -37,6 +42,7 @@ public class SavePlayModeChanges
         // save the color
         Renderer renderer = obj.GetComponent<Renderer>();
         if(renderer != null){
+            Undo.RecordObject(renderer, "Save Play Mode renderer Changes");
             Color color = renderer.material.color;
             string colorKey = obj.name + "_color";
             string colorValue = color.r + "," + color.g + "," + color.b + "," + color.a;
